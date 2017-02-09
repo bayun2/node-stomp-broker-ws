@@ -232,27 +232,4 @@ function StompServer({port=8125, queueMap={}}={}) {
     })
 }
 
-function SecureStompServer(port, credentials) {
-    StompServer.call(this);
-    var queueManager = new StompQueueManager();
-    this.port = port;
-    this.server = net.createServer(function (stream) {
-        stream.on('connect', function () {
-            console.log('Received Connection, securing');
-            stream.setSecure(credentials);
-        });
-        stream.on('secure', function () {
-            new StompStreamHandler(stream, queueManager);
-        });
-    });
-}
-
-StompServer.prototype.listen = function() {
-    this.server.listen(this.port, 'localhost');
-};
-
-StompServer.prototype.stop = function(port) {
-    this.server.close();
-};
-
 export default StompServer
