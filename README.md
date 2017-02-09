@@ -3,7 +3,7 @@
 ## 使用方法
 
 ```
-var StompServer = require('node-stomp-broker-ws');
+const StompServer = require('node-stomp-broker-ws');
 new StompServer({
   port: 8125,
   queueMap: {

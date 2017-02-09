@@ -232,4 +232,4 @@ function StompServer({port=8125, queueMap={}}={}) {
     })
 }
 
-export default StompServer
+module.exports = StompServer;
